@@ -1,4 +1,4 @@
-export interface Response {
+export interface CurrentWeatherResponse {
   location: Location;
   current: Current;
 }
@@ -49,9 +49,10 @@ export interface Condition {
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 export const getCurrentWeather = async (
   location: string
-): Promise<Response> => {
+): Promise<CurrentWeatherResponse> => {
   const res = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}&aqi=no`
+    `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}&aqi=no`,
+    { cache: "no-store" }
   );
 
   if (!res.ok) {

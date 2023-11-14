@@ -1,4 +1,5 @@
 import HomeButton from "@/components/HomeButton";
+import WeatherCard from "@/components/WeatherCard";
 import { getForecase } from "@/utils/getForecase";
 
 type Props = {
@@ -26,7 +27,14 @@ export default async function Detail({ params, searchParams }: Props) {
       <ul>
         {res.forecast.forecastday.map((day) => (
           <li key={day.date}>
-            {day.date} / {day.day.avgtemp_c}
+            {day.date}
+            <WeatherCard
+              icon={day.day.condition.icon}
+              weather={day.day.condition.text}
+              temp_c={day.day.avgtemp_c}
+              humidity={day.day.avghumidity}
+              wind_kph={day.day.maxwind_kph}
+            />
           </li>
         ))}
       </ul>

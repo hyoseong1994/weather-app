@@ -145,7 +145,8 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 export const getForecase = async (location: string): Promise<Response> => {
   const res = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3&aqi=no&alerts=no`
+    `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3&aqi=no&alerts=no`,
+    { cache: "no-store" }
   );
 
   if (!res.ok) {
